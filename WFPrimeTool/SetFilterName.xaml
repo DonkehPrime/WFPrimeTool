@@ -1,0 +1,23 @@
+﻿<Window x:Class="WFPrimeTool.SetFilterName"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WFPrimeTool"
+        mc:Ignorable="d"
+        Title="Add Filter Name" Height="361.573" Width="414.39" Background="#FF514E4E" Closed="Window_Closed" IsVisibleChanged="Window_IsVisibleChanged" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Topmost="True">
+    <Grid>
+        <Rectangle Fill="#FF668065" HorizontalAlignment="Left" Height="82" Margin="12,198,0,0" Stroke="Black" VerticalAlignment="Top" Width="383"/>
+        <Rectangle Fill="#FF8F6868" HorizontalAlignment="Left" Height="82" Margin="12,104,0,0" Stroke="Black" VerticalAlignment="Top" Width="383"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="39" Margin="22,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="363" FontSize="20" FontWeight="Bold" Background="#A8787878" Foreground="#FFCFCFCF" HorizontalContentAlignment="Center"/>
+        <Label x:Name="label" Content="" HorizontalAlignment="Left" Margin="22,141,0,0" VerticalAlignment="Top" Width="363" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1" HorizontalContentAlignment="Center"/>
+        <Button x:Name="button" Content="Add" HorizontalAlignment="Left" Margin="123,289,0,0" VerticalAlignment="Top" Width="158" Height="34" Foreground="#FF5EACA1" Background="#7CAEAEAE" FontSize="20" FontWeight="Bold" Click="button_Click"/>
+        <Label x:Name="label_Copy" Content="Scan Name:" HorizontalAlignment="Left" Margin="135,104,0,0" VerticalAlignment="Top" Width="136" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <Label x:Name="label_Copy1" Content="Actual Name:" HorizontalAlignment="Left" Margin="135,198,0,0" VerticalAlignment="Top" Width="136" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="89" Margin="22,10,0,0" VerticalAlignment="Top" Width="187"/>
+        <Image x:Name="image1" HorizontalAlignment="Left" Height="65" Margin="254,10,0,0" VerticalAlignment="Top" Width="80"/>
+        <CheckBox x:Name="checkBox" Content="Save" HorizontalAlignment="Left" Margin="324,296,0,0" VerticalAlignment="Top" Foreground="#FF5EACA1" Height="21" Width="71" FontSize="18" FontWeight="Bold" Checked="checkBox_Checked" Unchecked="checkBox_UnChecked" ToolTip="Save the Custom Filter **ONLY USE IF UNIQUE SCAN NAME!**"/>
+
+
+    </Grid>
+</Window>

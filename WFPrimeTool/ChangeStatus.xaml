@@ -1,0 +1,16 @@
+﻿<Window x:Class="WFPrimeTool.ChangeStatus"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WFPrimeTool"
+        mc:Ignorable="d"
+        Title="Warframe Market Status" Height="83.85" Width="464.251" Background="#993C3C3C" Closed="Window_Closed" IsVisibleChanged="Window_IsVisibleChanged" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Topmost="True">
+    <Grid>
+        <Button x:Name="Ingame" Content="In Game" HorizontalAlignment="Left" Margin="10,10,0,0" Foreground="#FF5EACA1" FontWeight="Bold" VerticalAlignment="Top" Width="128" Height="33" Click="Ingame_Click" Background="#66808080"/>
+        <Button x:Name="Online" Content="Online" HorizontalAlignment="Left" Margin="162,10,0,0" Foreground="#FF5EACA1" FontWeight="Bold" VerticalAlignment="Top" Width="128" Height="33" Click="Online_Click" Background="#66808080"/>
+        <Button x:Name="Invisible" Content="Invisible" HorizontalAlignment="Left" Margin="315,10,0,0" Foreground="#FF5EACA1" FontWeight="Bold" VerticalAlignment="Top" Width="128" Height="33" Click="Invisible_Click" Background="#66808080"/>
+
+
+    </Grid>
+</Window>

@@ -1,0 +1,21 @@
+﻿<Window x:Class="WFPrimeTool.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WFPrimeTool"
+        mc:Ignorable="d"
+        Title="SettingsWindow" Height="304.5" Width="411.5" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterOwner" Closed="Window_Closed" Background="#FF37393A" Foreground="#FF515151" Activated="Window_Activated">
+    <Grid>
+        <CheckBox x:Name="checkBox" Content="Max Scan Retry's: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="40" Width="222" FontSize="20" FontWeight="Bold" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" Foreground="#FF5EACA1" ToolTip="Sets the amount of times it should try before passing on to the next item for scanning"/>
+        <Slider x:Name="slider" HorizontalAlignment="Left" IsEnabled="false" Margin="252,13,0,0" VerticalAlignment="Top" Width="135" ValueChanged="slider_ValueChanged" Height="24" Minimum="4" Maximum="19"/>
+        <Button x:Name="button" Content="Load Filter" HorizontalAlignment="Left" Margin="10,216,0,0" VerticalAlignment="Top" Width="124" Height="46" Click="button_Click" Foreground="#FF5EACA1" FontWeight="Bold" Background="#4C000000" ToolTip="Loads the filter.txt if you have made any changes to it."/>
+        <CheckBox x:Name="checkBox1" Content="Auto Hide on Scan" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="40" Width="200" FontSize="20" FontWeight="Bold" Checked="checkBox1_Checked" Unchecked="checkBox1_Unchecked" Foreground="#FF5EACA1" ToolTip="Hides the WF Prime Tool Window while Scanning the items in the inventory."/>
+        <Button x:Name="button_Copy" Content="Check Allignment" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="124" Height="46" Click="button1_Click" Foreground="#FF5EACA1" FontWeight="Bold" Background="#4C000000" ToolTip="Check the allignment for scanning Prime Parts from your Inventory."/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="67" Margin="144,165,0,0" VerticalAlignment="Top" Width="143" ToolTip="Prime Part Name Location"/>
+        <Image x:Name="image2" HorizontalAlignment="Left" Height="53" Margin="312,165,0,0" VerticalAlignment="Top" Width="75" ToolTip="Prime Part Count Location"/>
+        <CheckBox x:Name="checkBox2" Content="Disable Error Logging" IsChecked="true" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Height="40" Width="230" FontSize="20" FontWeight="Bold" Checked="checkBox2_Checked" Unchecked="checkBox2_Unchecked" Foreground="#FF5EACA1" ToolTip="Disables/Enabled Error Logging."/>
+        <CheckBox x:Name="laststatus" Content="Enable Last Status" IsChecked="false" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Height="40" Width="230" FontSize="20" FontWeight="Bold" Checked="lastatusChecked" Unchecked="lastatusUnChecked" Foreground="#FF5EACA1" ToolTip="Disables/Enabled Using the last profile status used if disabled defaults to invisible."/>
+
+    </Grid>
+</Window>
