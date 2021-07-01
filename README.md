@@ -15,3 +15,18 @@ Download the Tessdata zip from the releases section (has to be extracted and put
 # Allignment Info if having trouble (Current Used Resolution is 1920x1080 if you want a custom resolution please contact me on discord
 
 ![alt text](https://github.com/DonkehPrime/WFPrimeTool/blob/main/allignment.png)
+
+
+# Custom Resolution/Color Filter Settings
+
+# Keybinds
+
+Ctrl Sets the Start Position
+
+Left Arrow Key at Start Position and then Right Arrow Key at the second box topleft corner
+Sets the X Increment Distance
+
+Up Arrow Key at Start Position and then Down Arrow Key at the topleft corner of the box below the start box 
+Sets the Y Increment Distance
+
+![alt text](https://github.com/DonkehPrime/WFPrimeTool/blob/main/CustomScanSettings.PNG)
