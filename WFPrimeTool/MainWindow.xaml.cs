@@ -104,6 +104,8 @@ namespace WFPrimeTool
         public static SetFilterName sfname = new SetFilterName();
         public static MarketHandler marketHandler = new MarketHandler();
         public static Scan_Setup cscan = new Scan_Setup();
+        public static DispatcherTimer stopwork = new DispatcherTimer();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -111,6 +113,7 @@ namespace WFPrimeTool
             LoadSettings();
             CustomConfig();
             Scan_Setup.LoadSettings();
+
             itemview.ItemsSource = orddat;
             mainw = this;
             data = client.DownloadString("https://api.warframe.market/v1/items");
@@ -126,6 +129,8 @@ namespace WFPrimeTool
             }
             titletimer.Interval = TimeSpan.FromSeconds(5);
             titletimer.Tick += new EventHandler(titletim);
+            stopwork.Tick += new EventHandler(stopworky);
+            stopwork.Interval = TimeSpan.FromMilliseconds(500);
             titletimer.Start();
             Loggedin();
             mwin = this;
@@ -205,6 +210,14 @@ namespace WFPrimeTool
                     break;
             }
                 
+        }
+
+        public async void stopworky(object sender, EventArgs e)
+        {
+            worker.Stop();
+            worker.Tick -= new EventHandler(Workdowork);
+            button.Content = "Error";
+            stopwork.Stop();
         }
         public async void Workdowork(object sender, EventArgs e)
         {
@@ -524,8 +537,8 @@ namespace WFPrimeTool
                         button.Content = "Paused";
                         if (dcount < 6)
                         {
-                            StartPos += incrementx;
-                            zStartPos += incrementx;
+                            StartPosdo += incrementx;
+                            zStartPosdo += incrementx;
                             trylimitc = 0;
                             dcount++;
                             somecount++;
@@ -538,10 +551,10 @@ namespace WFPrimeTool
                             dcount = 0;
                             rowcount++;
                             trylimitc = 0;
-                            StartPos = 100;
-                            zStartPos = 95;
-                            StartPos2 += incrementy;
-                            zStartPos2 += incrementy;
+                            StartPosdo = 100;
+                            zStartPosdo = 95;
+                            StartPos2do += incrementy;
+                            zStartPos2do += incrementy;
                             cando2 = false;
                             worker.Stop();
                             worker.Tick -= new EventHandler(Workdowork);

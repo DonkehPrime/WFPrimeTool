@@ -53,7 +53,7 @@
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}" Opacity="0.2"/>
             </Button.Background>
         </Button>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="455" Margin="363,10,0,0" VerticalAlignment="Top" Width="585"  FontWeight="Bold" FontSize="20" Background="#4CBDBCBC" Foreground="#FF5EACA1" Grid.ColumnSpan="2"/>
+        <ListBox x:Name="listBox" Visibility="Hidden" HorizontalAlignment="Left" Height="455" Margin="363,10,0,0" VerticalAlignment="Top" Width="585"  FontWeight="Bold" FontSize="20" Background="#4CBDBCBC" Foreground="#FF5EACA1" Grid.ColumnSpan="2"/>
         <Button x:Name="button3" Content="ClearList" HorizontalAlignment="Left" Margin="418,522,0,0" VerticalAlignment="Top" Width="88" Click="Button3_Click" Height="38" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1" Grid.Column="1" ToolTip="Clears the List of all Items.">
             <Button.Effect>
                 <BlurEffect Radius="1" RenderingBias="Quality"/>
@@ -121,7 +121,7 @@
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}" Opacity="0.2"/>
             </Button.Background>
         </Button>
-        <ListView x:Name="itemview" HorizontalAlignment="Left" Height="455" Margin="363,10,0,0" Background="#FF7A7A7A" FontSize="20" Foreground="#FF5EACA1" FontWeight="Bold" VerticalAlignment="Top" Width="587" Grid.ColumnSpan="2" MouseLeftButtonUp="listView_MouseLeftButtonUp">
+        <ListView x:Name="itemview" HorizontalAlignment="Left" Height="455" Margin="363,10,0,0" Background="#4CBDBCBC" FontSize="20" Foreground="#FF5EACA1" FontWeight="Bold" VerticalAlignment="Top" Width="587" Grid.ColumnSpan="2" MouseLeftButtonUp="listView_MouseLeftButtonUp">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="x" Width="30" DisplayMemberBinding="{Binding quantity}" />

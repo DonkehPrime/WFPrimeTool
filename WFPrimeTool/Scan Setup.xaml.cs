@@ -290,8 +290,8 @@ namespace WFPrimeTool
                     OCRHandler.gsharp2 = int.Parse(datasplit[27]);
                     OCRHandler.blackwhite = bool.Parse(datasplit[29]);
                     OCRHandler.blackwhite2 = bool.Parse(datasplit[31]);
-                    OCRHandler.invert = int.Parse(datasplit[33]);
-                    OCRHandler.invert2 = int.Parse(datasplit[35]);
+                    OCRHandler.invert = bool.Parse(datasplit[33]);
+                    OCRHandler.invert2 = bool.Parse(datasplit[35]);
                     OCRHandler.sizel = int.Parse(datasplit[37]);
                     OCRHandler.sizer = int.Parse(datasplit[39]);
                     OCRHandler.sizelb = int.Parse(datasplit[41]);
@@ -361,7 +361,7 @@ namespace WFPrimeTool
         }
         public static void SaveSettings()
         {
-            var path = @"DefaultOCRSettings.txt";
+            var path = @"OCRSettings.txt";
                 using (FileStream sr = File.OpenWrite(path))
                 {
                         AddText(sr, "qual=" + OCRHandler.qualit + "\n"+
@@ -405,7 +405,8 @@ namespace WFPrimeTool
 
         private void SaveSettingsz(object sender, RoutedEventArgs e)
         {
-            LoadSettings();
+            //LoadSettings();
+            SaveSettings();
         }
 
         private void ResetSettingsz(object sender, RoutedEventArgs e)

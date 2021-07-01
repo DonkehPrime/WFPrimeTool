@@ -71,9 +71,10 @@ namespace WFPrimeTool
             Size size2 = new Size(sizel, sizer);
        
             string answer;
-
-            using (MemoryStream inStream = new MemoryStream(photoBytes2))
+            try
             {
+                using (MemoryStream inStream = new MemoryStream(photoBytes2))
+                {
                 using (MemoryStream outStream = new MemoryStream())
                 {
                     
@@ -110,22 +111,34 @@ namespace WFPrimeTool
                     }
                     Scan_Setup.check1 = MainWindow.BitmapToImageSource(bmp);
                     //image.Source = BitmapToImageSource(bmp);
-                    var Input2 = new TesseractEngine("./tessdata", "eng", EngineMode.Default);
-                    Input2.SetVariable("tessedit_char_whitelist", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-                    using (var graph = Graphics.FromImage(bmp))
-                    {
-                        var r = new Regex(@"
+                    
+
+
+                        var Input2 = new TesseractEngine("./tessdata", "eng", EngineMode.Default);
+                        Input2.SetVariable("tessedit_char_whitelist", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+                        using (var graph = Graphics.FromImage(bmp))
+                        {
+                            var r = new Regex(@"
                 (?<=[A-Z])(?=[A-Z][a-z]) |
                  (?<=[^A-Z])(?=[A-Z]) |
                  (?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace); // splits letters if Capitalization is attached
-                        var Result = Input2.Process((Bitmap)bmp, PageSegMode.Auto);
-                        //textBox2.Text += r.Replace(Result.GetText(), " ");
-                        answer = r.Replace(Result.GetText(), " ");
+                            var Result = Input2.Process((Bitmap)bmp, PageSegMode.Auto);
+                            //textBox2.Text += r.Replace(Result.GetText(), " ");
+                            answer = r.Replace(Result.GetText(), " ");
 
+                        }
                     }
+                    
                 }
+                return answer;
             }
-            return answer;
+            catch (TesseractException n)
+            {
+                LogHandler.LogError(true, n.Message);
+                
+            }
+            return "";
+
         }
 
         public static int OCRCount()
@@ -139,7 +152,7 @@ namespace WFPrimeTool
             ISupportedImageFormat format = new JpegFormat { Quality = qualit2 };
             Size size = new Size(sizel2, sizer2);
             int resulty = 0;
-
+            try { 
             using (MemoryStream inStream = new MemoryStream(photoBytes2))
             {
                 using (MemoryStream outStream = new MemoryStream())
@@ -187,6 +200,12 @@ namespace WFPrimeTool
                         }
                     }
                 }
+            }
+            return resulty;
+            }
+            catch (TesseractException n)
+            {
+                LogHandler.LogError(true, n.Message);
             }
             return resulty;
         }

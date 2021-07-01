@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WFPrimeTool
 {
@@ -13,13 +14,21 @@ namespace WFPrimeTool
 
         public static bool LogError(bool except, string errorinfo, Image image = null, Image image2 = null, string itemname = "")
         {
+            var pathex = @"Logs/exceptions.txt";
+            if (errorinfo.Contains("tesseract/wiki/Error-1"))
+            {
+                if (MainWindow.worker.IsEnabled)
+                {
+                    MainWindow.worker.Stop();
+                }
+                MessageBox.Show("Please get the required Tessdata folder from github,\nOr make sure you put it in the correct Directory,\nSame folder containing this Application.", "Error: " + pathex, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             bool logged = false;
             if (MainWindow.Logging == true)
             {
                 int imgcount = 0;
                 
                 var path = @"Logs/log.txt";
-                var pathex = @"Logs/exceptions.txt";
                 var pathp = @"Logs/images/Error Item " + imgcount + ".bmp";
                 if (!Directory.Exists(@"Logs/images"))
                 {
