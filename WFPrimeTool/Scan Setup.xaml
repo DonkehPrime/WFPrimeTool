@@ -1,0 +1,99 @@
+﻿<Window x:Name="windo" x:Class="WFPrimeTool.Scan_Setup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WFPrimeTool"
+        mc:Ignorable="d"
+        Title="Scan_Setup" Height="369.5" Width="464.672" KeyDown="Window_KeyDown" Closed="windo_Closed" Topmost="True" Background="#FF1F2427">
+    <Grid>
+        <TextBox x:Name="qualbox" HorizontalAlignment="Left" Height="34" Margin="114,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <Label x:Name="label" Content="Quality:" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Width="99" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <TextBox x:Name="sizelbox" HorizontalAlignment="Left" Height="34" Margin="114,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <Label x:Name="label_Copy" Content="Scale:" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="99" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <TextBox x:Name="sizerb" HorizontalAlignment="Left" Height="34" Margin="167,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <TextBox x:Name="contrastbox" HorizontalAlignment="Left" Height="34" Margin="114,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <Label x:Name="label_Copy1" Content="Contrast:" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top" Width="99" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <TextBox x:Name="gammabox" HorizontalAlignment="Left" Height="34" Margin="114,121,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <Label x:Name="label_Copy2" Content="Gamma:" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="99" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <TextBox x:Name="huebox" HorizontalAlignment="Left" Height="34" Margin="114,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <Label x:Name="label_Copy3" Content="Hue:" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top" Width="99" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <TextBox x:Name="gblurbox" HorizontalAlignment="Left" Height="34" Margin="114,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <Label x:Name="label_Copy4" Content="GBlur:" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Width="99" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <TextBox x:Name="gsharpbox" HorizontalAlignment="Left" Height="34" Margin="114,232,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <Label x:Name="label_Copy5" Content="GSharp:" HorizontalAlignment="Left" Margin="10,229,0,0" VerticalAlignment="Top" Width="99" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <Button x:Name="loadname" Content="Load Name" HorizontalAlignment="Left" Margin="186,276,0,0" VerticalAlignment="Top" Width="80"  Height="20"  Foreground="#FF5EACA1" FontWeight="Bold" ToolTip="Load Name OCR Filter Settings." Click="loadname_Click">
+            <Button.Effect>
+                <BlurEffect Radius="1" RenderingBias="Quality"/>
+            </Button.Effect>
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}" Opacity="0.2"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="textBox1" IsEnabled="False" HorizontalAlignment="Left" Height="54" Margin="186,212,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.229,0.022" Foreground="#FF5EACA1"/>
+        <Button x:Name="loadquant" Content="Load Quantity" HorizontalAlignment="Left" Margin="356,276,0,0" VerticalAlignment="Top" Width="86"  Height="20"  Foreground="#FF5EACA1" FontWeight="Bold" ToolTip="Load Quantity OCR Filter Settings." Click="loadqua_Click">
+            <Button.Effect>
+                <BlurEffect Radius="1" RenderingBias="Quality"/>
+            </Button.Effect>
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}" Opacity="0.2"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="loadname_Copy" Content="Check" HorizontalAlignment="Left" Margin="271,276,0,0" VerticalAlignment="Top" Width="80"  Height="20"  Foreground="#FF5EACA1" FontWeight="Bold" ToolTip="Uses OCR to check current Set Settings for the Name and Quantity Scanner." Click="check_Click">
+            <Button.Effect>
+                <BlurEffect Radius="1" RenderingBias="Quality"/>
+            </Button.Effect>
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}" Opacity="0.2"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="textBox1_Copy" IsEnabled="False" HorizontalAlignment="Left" Height="54" Margin="317,212,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.229,0.022" Foreground="#FF5EACA1"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="86" Margin="186,123,0,0" VerticalAlignment="Top" Width="120"/>
+        <Image x:Name="image2" HorizontalAlignment="Left" Height="86" Margin="317,123,0,0" VerticalAlignment="Top" Width="125"/>
+        <CheckBox x:Name="bnw" Content="black n white" HorizontalAlignment="Left" Margin="10,276,0,0" VerticalAlignment="Top" Width="152" Height="27" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <CheckBox x:Name="inv" Content="invert" HorizontalAlignment="Left" Margin="10,304,0,0" VerticalAlignment="Top" Width="152" Height="27" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <Label x:Name="label_Copy6" Content="Start Pos(X,Y):" HorizontalAlignment="Left" Margin="173,47,0,0" VerticalAlignment="Top" Width="144" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <TextBox x:Name="posl" HorizontalAlignment="Left" Height="34" Margin="322,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <TextBox x:Name="posr" HorizontalAlignment="Left" Height="34" Margin="375,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <TextBox x:Name="sizelbox_Copy" HorizontalAlignment="Left" Height="34" Margin="322,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <Label x:Name="label_Copy7" Content="Size:" HorizontalAlignment="Left" Margin="264,7,0,0" VerticalAlignment="Top" Width="53" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <TextBox x:Name="sizerb_Copy" HorizontalAlignment="Left" Height="34" Margin="375,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <Label x:Name="label_Copy8" Content="Increment(X,Y):" HorizontalAlignment="Left" Margin="162,81,0,0" VerticalAlignment="Top" Width="160" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1"/>
+        <TextBox x:Name="IncrX" HorizontalAlignment="Left" Height="34" Margin="322,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <TextBox x:Name="IncrY" HorizontalAlignment="Left" Height="34" Margin="375,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" FontSize="20" FontWeight="Bold" TextChanged="textBox_TextChanged" Foreground="#FF5EACA1" Background="#81B2ADAD"/>
+        <Button x:Name="loadname_Copy1" Content="Test" HorizontalAlignment="Left" Margin="246,301,0,0" VerticalAlignment="Top" Width="42"  Height="20"  Foreground="#FF5EACA1" FontWeight="Bold" ToolTip="Test Incremental Scanning and results." Click="Test_Click">
+            <Button.Effect>
+                <BlurEffect Radius="1" RenderingBias="Quality"/>
+            </Button.Effect>
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}" Opacity="0.2"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="loadname_Copy2" Content="Save" HorizontalAlignment="Left" Margin="336,301,0,0" VerticalAlignment="Top" Width="40"  Height="20"  Foreground="#FF5EACA1" FontWeight="Bold" ToolTip="Saves Both Set name and Set quantity Settings." Click="SaveSettingsz">
+            <Button.Effect>
+                <BlurEffect Radius="1" RenderingBias="Quality"/>
+            </Button.Effect>
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}" Opacity="0.2"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="loadname_Copy3" Content="Reset" HorizontalAlignment="Left" Margin="292,301,0,0" VerticalAlignment="Top" Width="40"  Height="20"  Foreground="#FF5EACA1" FontWeight="Bold" ToolTip="Loads the Default Settings if you want them to stay default Click SAVE afterwards." Click="ResetSettingsz">
+            <Button.Effect>
+                <BlurEffect Radius="1" RenderingBias="Quality"/>
+            </Button.Effect>
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}" Opacity="0.2"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="setn" Content="Set" IsEnabled="False" HorizontalAlignment="Left" Margin="186,301,0,0" VerticalAlignment="Top" Width="29"  Height="20"  Foreground="#FF5EACA1" FontWeight="Bold" ToolTip="Sets Current Filled in Settings." Click="saven_Click" OpacityMask="#B3000000" BorderBrush="White" Background="#99787878">
+            <Button.Effect>
+                <BlurEffect Radius="1" RenderingBias="Quality"/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="setq" Content="Set" IsEnabled="False" HorizontalAlignment="Left" Margin="413,301,0,0" VerticalAlignment="Top" Width="29"  Height="20"  Foreground="#FF5EACA1" FontWeight="Bold" ToolTip="Sets Current Filled in Settings." Click="saveq_Click" OpacityMask="#B3000000" BorderBrush="White" Background="#99787878">
+            <Button.Effect>
+                <BlurEffect Radius="1" RenderingBias="Quality"/>
+            </Button.Effect>
+        </Button>
+    </Grid>
+</Window>

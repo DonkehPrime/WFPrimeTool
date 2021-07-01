@@ -43,14 +43,13 @@ namespace WFPrimeTool
         }
         public async void MyOrders(bool docheck, string zresponse = "")
         {
-            var response = zresponse;
             if (docheck == true)
             {
                 string[] headers = (new[] { "Authorization", "JWT " + Requests.JWT, "language", "en", "accept", "application/json", "platform", "pc", "auth_type", "header" });
                 response = await Requests.Request("https://api.warframe.market/v1/profile/" + MainWindow.ingame_name + "/orders", "GET", null, headers);
             }
 
-            if (!response.Contains("error") && response != "" && response.Contains("sell_orders"))
+            if (!response.Contains("error") && response != "" && response.Contains("sell_orders") && docheck)
             {
                 var data = JsonConvert.DeserializeObject<dynamic>(response);
                 int count = data["payload"]["sell_orders"].Count;
@@ -67,7 +66,11 @@ namespace WFPrimeTool
                         var plat = datasell[i]["platinum"];
                         var vis = datasell[i]["visible"];
                         var id = datasell[i]["id"];
-                        slist.Add(new OrderData() { name = nam, quantity = amn, platinum = plat, visible = vis, id = id });
+                        var holding = new OrderData() { name = nam, quantity = amn, platinum = plat, visible = vis, id = id };
+                        if (!slist.Contains(holding))
+                        {
+                            slist.Add(holding);
+                        }
                     }
                     
                 }
@@ -84,16 +87,20 @@ namespace WFPrimeTool
                         var plat = databuy[i]["platinum"];
                         var vis = databuy[i]["visible"];
                         var id = databuy[i]["id"];
-                        blist.Add(new OrderData() { name = nam, quantity = amn, platinum = plat, visible = vis, id = id });
+                        var holding = new OrderData() { name = nam, quantity = amn, platinum = plat, visible = vis, id = id };
+                        if (!blist.Contains(holding))
+                        {
+                            blist.Add(holding);
+                        }
                     }
                     
 
                 }
             }
-            else if(!response.Contains("sell_orders") && !response.Contains("error"))
+            else if(!zresponse.Contains("sell_orders") && zresponse != "" && !zresponse.Contains("error") && !docheck)
             {
-                var data = JsonConvert.DeserializeObject<dynamic>(response);
-                if (data != null && data.Count > 0)
+                var data = JsonConvert.DeserializeObject<dynamic>(zresponse);
+                if (data != null && data.Count != 0)
                 {
                     if (data["payload"]["order"]["order_type"] == "sell")
                     {
@@ -102,8 +109,11 @@ namespace WFPrimeTool
                         var plati = data["payload"]["order"]["platinum"];
                         var visib = data["payload"]["order"]["visible"];
                         var id = data["payload"]["order"]["id"];
-                        slist.Add(new OrderData() { name = nam, quantity = amn, platinum = plati, visible = visib, id = id });
-
+                        var holding = new OrderData() { name = nam, quantity = amn, platinum = plati, visible = visib, id = id };
+                        if (!slist.Contains(holding))
+                        {
+                            slist.Add(holding);
+                        }
                     }
                     else if (data["payload"]["order"]["order_type"] == "buy" && data.Count > 0)
                     {
@@ -112,7 +122,11 @@ namespace WFPrimeTool
                         var plati = data["payload"]["order"]["platinum"];
                         var visib = data["payload"]["order"]["visible"];
                         var id = data["payload"]["order"]["id"];
-                        blist.Add(new OrderData() { name = nam, quantity = amn, platinum = plati, visible = visib, id = id });
+                        var holding = new OrderData() { name = nam, quantity = amn, platinum = plati, visible = visib, id = id };
+                        if (!blist.Contains(holding))
+                        {
+                            blist.Add(holding);
+                        }
                     }
                 }
 
@@ -158,9 +172,9 @@ namespace WFPrimeTool
 
                 string[] headers = (new[] { "Authorization", "JWT " + Requests.JWT, "language", "en", "accept", "application/json", "platform", "pc", "auth_type", "header" });
                 await Task.Delay(400);
-                var response = await Requests.Request("https://api.warframe.market/v1/profile/orders/" + temp.id, "PUT", JsonConvert.SerializeObject(new { order_id = temp.id, platinum = Convert.ToInt32(platbox.Text), quantity = Convert.ToInt32(quantbox.Text), visible = checkBox.IsChecked}), headers);
+                var responsez = await Requests.Request("https://api.warframe.market/v1/profile/orders/" + temp.id, "PUT", JsonConvert.SerializeObject(new { order_id = temp.id, platinum = Convert.ToInt32(platbox.Text), quantity = Convert.ToInt32(quantbox.Text), visible = checkBox.IsChecked}), headers);
                 slist.Remove(temp);
-                MyOrders(false, response);
+                MyOrders(false, responsez);
             }
             if (buylist.SelectedItem != null)
             {
@@ -168,9 +182,9 @@ namespace WFPrimeTool
 
                 string[] headers = (new[] { "Authorization", "JWT " + Requests.JWT, "language", "en", "accept", "application/json", "platform", "pc", "auth_type", "header" });
                 await Task.Delay(400);
-                var response = await Requests.Request("https://api.warframe.market/v1/profile/orders/" + temp.id, "PUT", JsonConvert.SerializeObject(new { order_id = temp.id, platinum = Convert.ToInt32(platbox.Text), quantity = Convert.ToInt32(quantbox.Text), visible = checkBox.IsChecked}), headers);
+                var responsez = await Requests.Request("https://api.warframe.market/v1/profile/orders/" + temp.id, "PUT", JsonConvert.SerializeObject(new { order_id = temp.id, platinum = Convert.ToInt32(platbox.Text), quantity = Convert.ToInt32(quantbox.Text), visible = checkBox.IsChecked}), headers);
                 slist.Remove(temp);
-                MyOrders(false, response);
+                MyOrders(false, responsez);
             }
         }
 

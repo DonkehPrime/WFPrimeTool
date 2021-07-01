@@ -229,5 +229,12 @@ namespace WFPrimeTool
                 MainWindow.laststat = false;
             }
         }
+
+        private void CustScan_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.cscan.Top = this.Top;
+            MainWindow.cscan.Left = this.Left;
+            MainWindow.cscan.Show();
+        }
     }
 }

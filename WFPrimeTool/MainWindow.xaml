@@ -37,7 +37,7 @@
                 <SolidColorBrush Color="#00000000" Opacity="0.2"/>
             </Label.Background>
         </Label>
-        <Button x:Name="button1" Content="SortBy" HorizontalAlignment="Left" Margin="418,476,0,0" VerticalAlignment="Top" Width="88" Click="Button1_Click" Height="38" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1" Grid.Column="1" ToolTip="Sort the item list By:  Plat -> Ducat -> Quantity(X) -> Item Name">
+        <Button x:Name="button1" Content="SortBy" HorizontalAlignment="Left" Margin="418,476,0,0" VerticalAlignment="Top" Width="88" Click="Button1_Click" Height="38" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1" Grid.Column="1" ToolTip="Sort the item list By:  Quantity(X) -> Name -> Platinum -> Ducat">
             <Button.Effect>
                 <BlurEffect Radius="1" RenderingBias="Quality"/>
             </Button.Effect>
@@ -53,7 +53,7 @@
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}" Opacity="0.2"/>
             </Button.Background>
         </Button>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="455" Margin="363,10,0,0" VerticalAlignment="Top" Width="585"  FontWeight="Bold" FontSize="20" Background="#4CBDBCBC" Foreground="#FF5EACA1" Grid.ColumnSpan="2" MouseLeftButtonUp="listBox_MouseLeftButtonUp"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="455" Margin="363,10,0,0" VerticalAlignment="Top" Width="585"  FontWeight="Bold" FontSize="20" Background="#4CBDBCBC" Foreground="#FF5EACA1" Grid.ColumnSpan="2"/>
         <Button x:Name="button3" Content="ClearList" HorizontalAlignment="Left" Margin="418,522,0,0" VerticalAlignment="Top" Width="88" Click="Button3_Click" Height="38" FontSize="20" FontWeight="Bold" Foreground="#FF5EACA1" Grid.Column="1" ToolTip="Clears the List of all Items.">
             <Button.Effect>
                 <BlurEffect Radius="1" RenderingBias="Quality"/>
@@ -64,17 +64,17 @@
         </Button>
         <Button x:Name="button5" Content="listscheck" HorizontalAlignment="Left" Margin="10,344,0,0" VerticalAlignment="Top" Width="75" Click="button5_Click" IsEnabled="False" Visibility="Hidden"/>
 
-        <RadioButton x:Name="openorder" Content="Open Order" HorizontalAlignment="Left" Margin="244,476,0,0" VerticalAlignment="Top" Width="154" Foreground="#FF5EACA1" BorderBrush="#FFC7C1C1" FontSize="20" FontWeight="Bold" Checked="OpenOrder_Checked" Grid.Column="1" ToolTip="If Enabled once you click one of the items in the list will take you to corresponding item order page.">
+        <RadioButton x:Name="openorder" Content="Open Order" HorizontalAlignment="Left" Margin="247,505,0,0" VerticalAlignment="Top" Width="154" Foreground="#FF5EACA1" BorderBrush="#FFC7C1C1" FontSize="20" FontWeight="Bold" Checked="OpenOrder_Checked" Grid.Column="1" ToolTip="If Enabled once you click one of the items in the list will take you to corresponding item order page.">
             <RadioButton.Background>
                 <SolidColorBrush Color="White" Opacity="0.5"/>
             </RadioButton.Background>
         </RadioButton>
-        <RadioButton x:Name="copyname" Content="Copy Name" HorizontalAlignment="Left" Margin="244,534,0,0" VerticalAlignment="Top" Width="154" Foreground="#FF5EACA1" BorderBrush="#FFC7C1C1" FontSize="20" FontWeight="Bold" Checked="CopyName_Checked" Grid.Column="1" ToolTip="If Enabled items you select in the list will be set to your clipboard for easy searching in your inventory.">
+        <RadioButton x:Name="copyname" Content="Copy Name" HorizontalAlignment="Left" Margin="247,476,0,0" VerticalAlignment="Top" Width="154" Foreground="#FF5EACA1" BorderBrush="#FFC7C1C1" FontSize="20" FontWeight="Bold" Checked="CopyName_Checked" Grid.Column="1" ToolTip="If Enabled items you select in the list will be set to your clipboard for easy searching in your inventory.">
             <RadioButton.Background>
                 <SolidColorBrush Color="White" Opacity="0.5"/>
             </RadioButton.Background>
         </RadioButton>
-        <RadioButton x:Name="placeorder" Content="Place Order" HorizontalAlignment="Left" Margin="244,506,0,0" VerticalAlignment="Top" Width="154" Foreground="#FF5EACA1" BorderBrush="#FFC7C1C1" FontSize="20" FontWeight="Bold" Checked="PlaceOrder_Checked" Grid.Column="1" ToolTip="If Logged In allows you to select a item from the list to place a order to warframe.market">
+        <RadioButton x:Name="placeorder" Content="Place Order" Visibility="Hidden" HorizontalAlignment="Left" Margin="247,535,0,0" VerticalAlignment="Top" Width="154" Foreground="#FF5EACA1" BorderBrush="#FFC7C1C1" FontSize="20" FontWeight="Bold" Checked="PlaceOrder_Checked" Grid.Column="1" ToolTip="If Logged In allows you to select a item from the list to place a order to warframe.market">
             <RadioButton.Background>
                 <SolidColorBrush Color="White" Opacity="0.5"/>
             </RadioButton.Background>
@@ -121,6 +121,16 @@
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}" Opacity="0.2"/>
             </Button.Background>
         </Button>
+        <ListView x:Name="itemview" HorizontalAlignment="Left" Height="455" Margin="363,10,0,0" Background="#FF7A7A7A" FontSize="20" Foreground="#FF5EACA1" FontWeight="Bold" VerticalAlignment="Top" Width="587" Grid.ColumnSpan="2" MouseLeftButtonUp="listView_MouseLeftButtonUp">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="x" Width="30" DisplayMemberBinding="{Binding quantity}" />
+                    <GridViewColumn Header="name" Width="230" DisplayMemberBinding="{Binding name}" />
+                    <GridViewColumn Header="plat" Width="50" DisplayMemberBinding="{Binding platinum}" />
+                    <GridViewColumn Header="duc" Width="50" DisplayMemberBinding="{Binding ducats}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>

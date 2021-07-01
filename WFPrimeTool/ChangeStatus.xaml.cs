@@ -152,6 +152,10 @@ namespace WFPrimeTool
         }
         public static async Task<bool> SendMessage(string data)
         {
+            if(marketSocket == null)
+            {
+                return false;
+            }
             if (marketSocket.ReadyState == WebSocketState.Closed || marketSocket.ReadyState != WebSocketState.Open)
             {
                 marketSocket.Close();

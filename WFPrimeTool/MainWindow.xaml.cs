@@ -20,6 +20,7 @@ using ImageProcessor.Imaging.Formats;
 using Tesseract;
 using System.Threading.Tasks;
 using Microsoft.Win32;
+using System.Collections.ObjectModel;
 
 namespace WFPrimeTool
 {
@@ -33,6 +34,7 @@ namespace WFPrimeTool
         public static Dictionary<string, string> ItemImgUrl = new Dictionary<string, string>();
         public static Dictionary<string, int> ownitemcount = new Dictionary<string, int>();
         public static Dictionary<string, string> CustomFilt = new Dictionary<string, string>();
+        public static ObservableCollection<OrderData> orddat = new ObservableCollection<OrderData>();
         public static List<string> ItemName = new List<string>();
         public static List<string> ownitemurl = new List<string>();
         public static string ingame_name;
@@ -59,7 +61,7 @@ namespace WFPrimeTool
         public static DispatcherTimer Order = new DispatcherTimer();
         public static int doublecheck = 0;
         public static int quantity = 0;
-        public static int sortval = 1;
+        public static int sortval = 8;
         public static dynamic oData;
         public static dynamic duData;
         public static dynamic data;
@@ -86,6 +88,12 @@ namespace WFPrimeTool
         public static int StartPos2 = 290;
         public static int zStartPos = 95;
         public static int zStartPos2 = 202;
+        public static int StartPosdo;
+        public static int StartPos2do;
+        public static int zStartPosdo;
+        public static int zStartPos2do;
+        public static int incrementx = 211;
+        public static int incrementy = 200;
         public static int dcount = 0;
         public static int rowcount = 0;
         public static int somecount = 0;
@@ -95,12 +103,15 @@ namespace WFPrimeTool
         public static MainWindow mainw;
         public static SetFilterName sfname = new SetFilterName();
         public static MarketHandler marketHandler = new MarketHandler();
+        public static Scan_Setup cscan = new Scan_Setup();
         public MainWindow()
         {
             InitializeComponent();
             CheckFilter();
             LoadSettings();
             CustomConfig();
+            Scan_Setup.LoadSettings();
+            itemview.ItemsSource = orddat;
             mainw = this;
             data = client.DownloadString("https://api.warframe.market/v1/items");
             var items = JsonConvert.DeserializeObject(data);
@@ -152,6 +163,10 @@ namespace WFPrimeTool
             }
             if(worker.IsEnabled == false)
             {
+                StartPosdo = StartPos;
+                StartPos2do = StartPos2;
+                zStartPosdo = zStartPos;
+                zStartPos2do = zStartPos2;
                 worker.Interval = TimeSpan.FromMilliseconds(150);
                 worker.Tick += new EventHandler(Workdowork);
                 worker.Start();
@@ -214,61 +229,8 @@ namespace WFPrimeTool
                     }
                     trylimitc++;
                     cando2 = true;
-                    Bitmap printscreen = new Bitmap(170, 80);
-
-                    Graphics graphics = Graphics.FromImage(printscreen as Image);
-
-                    graphics.CopyFromScreen(StartPos, StartPos2, 0, 0, printscreen.Size);
-
-                    image.Source = BitmapToImageSource(printscreen);
-                    logshot1 = printscreen;
-
                     string temps = "";
-
-                    byte[] photoBytes2 = BitmapToBytes(printscreen);
-                    ISupportedImageFormat format2 = new JpegFormat { Quality = 94 };
-                    System.Drawing.Size size2 = new System.Drawing.Size(222, 163);
-                    using (MemoryStream inStream = new MemoryStream(photoBytes2))
-                    {
-                        using (MemoryStream outStream = new MemoryStream())
-                        {
-
-                            // Initialize the ImageFactory using the overload to preserve EXIF metadata.
-                            using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
-                            {
-                                // Load, resize, set the format and quality and save an image.
-                                imageFactory.Load(inStream)
-                                                                    .Resize(size2)
-                                                                    .Format(format2)
-                                                                    .Contrast(-61)
-                                                                    .Gamma(21)
-                                                                    .Hue(17)
-                                                                    .Filter(MatrixFilters.Invert)
-                                                                    .Filter(MatrixFilters.BlackWhite)
-                                                                    //.Filter(MatrixFilters.GreyScale)
-                                                                    
-                                                                    .GaussianSharpen(28)
-                                                                    
-                                            .Save(outStream);
-                                
-                            }
-                            Bitmap bmp = new Bitmap(outStream);
-                            //image.Source = BitmapToImageSource(bmp);
-                            var Input2 = new TesseractEngine("./tessdata", "eng", EngineMode.Default);
-                            Input2.SetVariable("tessedit_char_whitelist", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-                            using (var graph = Graphics.FromImage(bmp))
-                            {
-                                var r = new Regex(@"
-                (?<=[A-Z])(?=[A-Z][a-z]) |
-                 (?<=[^A-Z])(?=[A-Z]) |
-                 (?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace);
-                                var Result = Input2.Process(bmp, PageSegMode.Auto);
-                                textBox2.Text += r.Replace(Result.GetText(), " ");
-                                temps = r.Replace(Result.GetText(), " ");
-
-                            }
-                        }
-                    }
+                    temps = OCRHandler.OCRWord();
                     temps = temps.Replace("\n", " ").Replace("\r", "");
 
                     textBox2.Text = temps;
@@ -492,65 +454,21 @@ namespace WFPrimeTool
                                 do
                                 {
                                     coundt++;
-                                    Bitmap printscreen2 = new Bitmap(35, 25);
-                                    Graphics graphics2 = Graphics.FromImage(printscreen2 as System.Drawing.Image);
-                                    graphics2.CopyFromScreen(zStartPos, zStartPos2, 0, 0, printscreen2.Size);
-                                    image2.Source = BitmapToImageSource(printscreen2);
-                                    logshot2 = printscreen2;
-                                    byte[] photoBytes = BitmapToBytes(printscreen2);
-                                    ISupportedImageFormat format = new JpegFormat { Quality = 150 };
-                                    System.Drawing.Size size = new System.Drawing.Size(180, 230);
-                                    using (MemoryStream inStream = new MemoryStream(photoBytes))
+                                    resulty = OCRHandler.OCRCount();
+                                    if (!MainWindow.ownitemcount.ContainsKey(bname) && resulty > 0)
                                     {
-                                        using (MemoryStream outStream = new MemoryStream())
-                                        {
-                                            // Initialize the ImageFactory using the overload to preserve EXIF metadata.
-                                            using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
-                                            {
-                                                // Load, resize, set the format and quality and save an image.
-                                                imageFactory.Load(inStream)
-                                                            .Resize(size)
-                                                                    .Format(format)
-                                                                    .Contrast(-61)
-                                                                    .Gamma(21)
-                                                                    .Hue(17)
-                                                                    .Filter(MatrixFilters.Invert)
-                                                                    .Filter(MatrixFilters.BlackWhite)
-                                                                    //.Filter(MatrixFilters.GreyScale)
-                                                                    .GaussianBlur(-12)
-                                                                    .GaussianSharpen(37)
-                                                            //.EntropyCrop(30)
-                                                            .Save(outStream);
-                                            }
-                                            Bitmap bmp = new Bitmap(outStream);
-                                            //image2.Source = BitmapToImageSource(bmp);
-                                            var Input2 = new TesseractEngine("./tessdata", "eng", EngineMode.Default);
-                                            Input2.SetVariable("tessedit_char_whitelist", "1234567890");
-                                            using (var graph = Graphics.FromImage(bmp))
-                                            {
-                                                var Result = Input2.Process(bmp, PageSegMode.Count);
-                                                //textBox2.Text = Result.GetText();
-                                                if (Result.GetText() != null && Result.GetText() != "")
-                                                {
-                                                    resulty = Convert.ToInt32(Result.GetText().Replace("\n", ""));
-                                                    if (!ownitemcount.ContainsKey(bname) && resulty > 0)
-                                                    {
-                                                        ownitemcount.Add(bname, resulty);
-                                                        quantity = resulty;
+                                        MainWindow.ownitemcount.Add(bname, resulty);
+                                        quantity = resulty;
 
-                                                    }
-                                                    //if(coundt)
-                                                }
-                                            }
-                                        }
                                     }
+                                
 
                                 }
                                 while (quantity == 0 && coundt < 5);
                                 if (dcount < 6)
                                 {
-                                    StartPos += 210;
-                                    zStartPos += 211;
+                                    StartPosdo += incrementx;
+                                    zStartPosdo += incrementx;
                                     trylimitc = 0;
                                     dcount++;
                                     somecount++;
@@ -561,40 +479,14 @@ namespace WFPrimeTool
                                     dcount = 0;
                                     rowcount++;
                                     trylimitc = 0;
-                                    StartPos = 100;
-                                    zStartPos = 95;
-                                    StartPos2 += 200;
-                                    zStartPos2 += 200;
+                                    StartPosdo = StartPos;
+                                    zStartPosdo = zStartPos;
+                                    StartPos2do += incrementy;
+                                    zStartPos2do += incrementy;
                                     cando2 = false;
                                 }
                             }
-                            /*
-                            else if (trylimit > SettingsWindow.retrylimitcount || trylimit == SettingsWindow.retrylimitcount)
-                            {
-                                LogHandler.LogError(false, trylimit.ToString(), logshot1, logshot2, textBox2.Text);
-                                WrongItemName(textBox2.Text, logshot1, logshot2);
-                                if (dcount < 6)
-                                {
-                                    StartPos += 210;
-                                    zStartPos += 211;
-                                    trylimitc = 0;
-                                    dcount++;
-                                    somecount++;
-                                    cando2 = false;
-                                }
-                                if (dcount == 6)
-                                {
-                                    dcount = 0;
-                                    rowcount++;
-                                    trylimitc = 0;
-                                    StartPos = 100;
-                                    zStartPos = 95;
-                                    StartPos2 += 200;
-                                    zStartPos2 += 200;
-                                    cando2 = false;
-                                }
-                            }
-                            */
+                            
                         }
 
 
@@ -612,10 +504,10 @@ namespace WFPrimeTool
                         worker.Tick -= new EventHandler(Workdowork);
                         button.Content = "Scan Prime Parts";
                         cando2 = false;
-                        StartPos = 100;
-                        StartPos2 = 290;
-                        zStartPos = 95;
-                        zStartPos2 = 202;
+                        StartPosdo = StartPos;
+                        StartPos2do = StartPos2;
+                        zStartPos = zStartPosdo;
+                        zStartPos2 = zStartPos2do;
                         trylimitc = 0;
                         dcount = 0;
                         rowcount = 0;
@@ -632,8 +524,8 @@ namespace WFPrimeTool
                         button.Content = "Paused";
                         if (dcount < 6)
                         {
-                            StartPos += 210;
-                            zStartPos += 211;
+                            StartPos += incrementx;
+                            zStartPos += incrementx;
                             trylimitc = 0;
                             dcount++;
                             somecount++;
@@ -648,8 +540,8 @@ namespace WFPrimeTool
                             trylimitc = 0;
                             StartPos = 100;
                             zStartPos = 95;
-                            StartPos2 += 200;
-                            zStartPos2 += 200;
+                            StartPos2 += incrementy;
+                            zStartPos2 += incrementy;
                             cando2 = false;
                             worker.Stop();
                             worker.Tick -= new EventHandler(Workdowork);
@@ -700,113 +592,7 @@ namespace WFPrimeTool
             
 
         }
-        /*
-        public static bool LogError(bool except, string errorinfo, Image image = null, Image image2 = null, string itemname = "")
-        {
-
-            int imgcount = 0;
-            bool logged = false;
-            var path = @"Logs/log.txt";
-            var pathex = @"Logs/exceptions.txt";
-            var pathp = @"Logs/images/Error Item " + imgcount + ".bmp";
-            if (!Directory.Exists(@"Logs/images"))
-            {
-                Directory.CreateDirectory(@"Logs/images");
-            }
-
-            if (image != null)
-            {
-                while(File.Exists(pathp))
-                {
-                    imgcount++;
-                    pathp = @"Logs/images/Error Item " + imgcount + ".bmp";
-                }
-                if (!File.Exists(pathp))
-                {
-                    image.Save(pathp, System.Drawing.Imaging.ImageFormat.Bmp);
-                    logged = true;
-                }
-
-            }
-            if (image2 != null)
-            {
-                while (File.Exists(pathp))
-                {
-                    imgcount++;
-                    pathp = @"Logs/images/Error Item " + imgcount + ".bmp";
-                }
-                if (!File.Exists(pathp))
-                {
-                    image2.Save(pathp, System.Drawing.Imaging.ImageFormat.Bmp);
-                    logged = true;
-                }
-
-            }
-            if(except == false)
-            {
-                if (File.Exists(path))
-                {
-                    string prevtext;
-                    using (FileStream fstr = File.OpenRead(path))
-                    {
-                        byte[] b = new byte[fstr.Length];
-                        var fulltext = fstr.Read(b, 0, b.Length);
-                        UTF8Encoding temp = new UTF8Encoding(true);
-                        prevtext = temp.GetString(b);
-                        fstr.Close();
-                    }
-                    using (FileStream fstr = File.OpenWrite(path))
-                    {
-                        AddText(fstr, prevtext + " Retry Count: {" + errorinfo + "} Error Count: {" + imgcount + "}  Error String: {" + itemname + "}\n");
-                        fstr.Close();
-                        logged = true;
-                    }
-                }
-                else
-                {
-                    using (FileStream fstr = File.Create(path))
-                    {
-                        AddText(fstr, " Retry Count: {" + errorinfo + "} Error Count: {" + imgcount + "}  Error String: {" + itemname + "}\n");
-                        fstr.Close();
-                        logged = true;
-                    }
-                }
-            }
-            else 
-            {
-                if (File.Exists(pathex))
-                {
-                    string prevtext;
-                    using (FileStream fstr = File.OpenRead(path))
-                    {
-                        byte[] b = new byte[fstr.Length];
-                        var fulltext = fstr.Read(b, 0, b.Length);
-                        UTF8Encoding temp = new UTF8Encoding(true);
-                        prevtext = temp.GetString(b);
-                        fstr.Close();
-                    }
-                    using (FileStream fstr = File.OpenWrite(path))
-                    {
-                        AddText(fstr, prevtext + errorinfo + "\n");
-                        fstr.Close();
-                        logged = true;
-                    }
-                }
-                else
-                {
-                    using (FileStream fstr = File.Create(path))
-                    {
-                        AddText(fstr, errorinfo + "\n");
-                        fstr.Close();
-                        logged = true;
-                    }
-                }
-            }
-            
-
-            return logged;
-        }
-        */
+ 
         public static byte[] BitmapToBytes(Bitmap bitmap)
         {
             using (MemoryStream memory = new MemoryStream())
@@ -839,7 +625,13 @@ namespace WFPrimeTool
             
 
         }
-
+        public class OrderData
+        {
+            public string name { get; set; }
+            public int quantity { get; set; }
+            public int platinum { get; set; }
+            public int ducats { get; set; }
+        }
         private async Task GetItem(string i)
         {
 
@@ -884,11 +676,13 @@ namespace WFPrimeTool
                             int quantert = 0;
                             if (ownitemcount.TryGetValue(Check, out quantert))
                             {
+                                orddat.Add(new OrderData() { name = Check, quantity = quantert, ducats = ducatprice, platinum = sortdict.First().Value });
                                 listBox.Items.Add(String.Format("Plat: " + sortdict.First().Value + " |" + " Ducat: " + ducatprice + " |" + " " + " X: " + quantert + " |" + " " + Check)); //+ " |" + " " + " X: " + quantert + 
                                 answer = " Plat: " + sortdict.First().Value + " Ducat: " + ducatprice + "  " + Check;
                             }
                             else
                             {
+                                orddat.Add(new OrderData() { name = Check, quantity = 1, ducats = ducatprice, platinum = sortdict.First().Value });
                                 listBox.Items.Add(String.Format("Plat: " + sortdict.First().Value + " |" + " Ducat: " + ducatprice + " |" + " " + " X: " + "1" + " |" + " " + Check)); // " |" + " " + " X: " + "1" + 
                                 answer = " Plat: " + sortdict.First().Value + " Ducat: " + ducatprice + "  " + Check;
                             }
@@ -914,11 +708,13 @@ namespace WFPrimeTool
                         int quantert = 0;
                         if(ownitemcount.TryGetValue(Check, out quantert))
                         {
+                                orddat.Add(new OrderData() { name = Check, quantity = quantert, ducats = ducatprice, platinum = 0 });
                                 listBox.Items.Add(String.Format("Plat: " + 0 + " |" + " Ducat: " + ducatprice + " |" + " " + " X: " + quantert + " | " + Check)); //  
                                 answer = " Plat: " + sortdict.First().Value + " Ducat: " + ducatprice + "  " + " X: " + quantert + "  " + Check;
                         }
                         else
                         {
+                                orddat.Add(new OrderData() { name = Check, quantity = 1, ducats = ducatprice, platinum = 0 });
                                 listBox.Items.Add(String.Format("Plat: " + 0 + " |" + " Ducat: " + ducatprice + " |" + " " + Check)); // 
                                 answer = " Plat: " + sortdict.First().Value + " Ducat: " + ducatprice + Check;
                         }
@@ -948,12 +744,14 @@ namespace WFPrimeTool
                                 ducatprice = ducatlink[vd]["ducats"];
                             }
                         }
+                        orddat.Add(new OrderData() { name = Check, quantity = 1, ducats = ducatprice, platinum = 0 });
                         listBox.Items.Add(String.Format("{0}|{1}|{2}", "Plat: " + 0, " Ducat: " + ducatprice, " " + Check));
                         answer = " Plat: " + "X" + " Ducat: " + ducatprice + "  " + Check;
                         }
                         catch (WebException z)
                         {
                             LogHandler.LogError(true, z.Message);
+                            orddat.Add(new OrderData() { name = Check, quantity = 1, ducats = 0, platinum = 0 });
                             listBox.Items.Add(String.Format("{0}|{1}|{2}", "Plat: " + 0, " Ducat: " + 0, " " + Check));
                             answer = " Plat: " + "X" + " Ducat: " + 0 + "  " + Check;
                         }
@@ -1001,6 +799,7 @@ namespace WFPrimeTool
             var shortdict = SortDem.OrderBy(f => f.Value);
             
             listBox.Items.Clear();
+            orddat.Clear();
             if(sortval == 1 || sortval == 4 || sortval == 8)
             {
                         foreach (var item in shortdict)
@@ -1027,6 +826,8 @@ namespace WFPrimeTool
                                 }
 
                             }
+                            var splittemp = tempstring.Split(' ');
+                            orddat.Add(new OrderData() { name = splittemp[10], quantity = int.Parse(splittemp[8]), ducats = int.Parse(splittemp[4]), platinum = int.Parse(splittemp[1]) });
                             listBox.Items.Add(tempstring);
                         }
             }
@@ -1094,6 +895,8 @@ namespace WFPrimeTool
                         }
                         foreach(var item in SortDem2)
                         {
+                            var splittemp = item.Split(' ');
+                            orddat.Add(new OrderData() { name = splittemp[10], quantity = int.Parse(splittemp[8]), ducats = int.Parse(splittemp[4]), platinum = int.Parse(splittemp[1]) });
                             listBox.Items.Add(item);
                         }
                         SortDem2.Clear();
@@ -1283,6 +1086,7 @@ namespace WFPrimeTool
         }
         private void Button3_Click(object sender, RoutedEventArgs e)
         {
+            orddat.Clear();
             listBox.Items.Clear();
             worker.Stop();
             worker.Tick -= new EventHandler(Workdowork);
@@ -1294,89 +1098,7 @@ namespace WFPrimeTool
                         rowcount = 0;
                         somecount = 0;
         }
-        /* MOVED TO SETTINGS WINDOW [LOAD FILTER BUTTON][One Screen Option]
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            onescreen = true;
-        }
-        private void CheckBox_UnChecked(object sender, RoutedEventArgs e)
-        {
-            onescreen = false;
-        }
-        
-        private void button4_Click(object sender, RoutedEventArgs e)
-        {
-            
-
-            var path = @"filter.txt";
-            string holder = "";
-            if (File.Exists(path))
-            {
-                prime.Clear();
-                neuroptics.Clear();
-                systems.Clear();
-                chassis.Clear();
-                receiver.Clear();
-                barrel.Clear();
-                using (FileStream fstream = File.OpenRead(path))
-                {
-                    byte[] b = new byte[1024];
-                    var fulltext = fstream.Read(b, 0, b.Length);
-                    UTF8Encoding temp = new UTF8Encoding(true);
-                    holder += temp.GetString(b);
-                    holder = holder.Replace("]\n", "],");
-                    var jsons = JsonConvert.DeserializeObject<dynamic>(holder);
-                    foreach(var item in jsons)
-                    {
-                        foreach(var itom in item)
-                        {
-                            foreach (var filtomy in itom) 
-                            {
-                                string filtom = filtomy.ToString();
-                                if(filtomy.Path.Contains("prime") && !prime.Contains(filtom.ToString()))
-                                {
-                                    prime.Add(filtom);
-                                }
-                                if (filtomy.Path.Contains("neuroptics") && !neuroptics.Contains(filtom.ToString()))
-                                {
-                                    neuroptics.Add(filtom);
-                                }
-                                if (filtomy.Path.Contains("chassis") && !chassis.Contains(filtom.ToString()))
-                                {
-                                    chassis.Add(filtom);
-                                }
-                                if (filtomy.Path.Contains("systems") && !systems.Contains(filtom.ToString()))
-                                {
-                                    systems.Add(filtom);
-                                }
-                                if (filtomy.Path.Contains("receiver") && !receiver.Contains(filtom.ToString()))
-                                {
-                                    receiver.Add(filtom);
-                                }
-                                if (filtomy.Path.Contains("barrel") && !barrel.Contains(filtom.ToString()))
-                                {
-                                    barrel.Add(filtom);
-                                }
-                                if (filtomy.Path.Contains("ornament") && !barrel.Contains(filtom.ToString()))
-                                {
-                                    ornament.Add(filtom);
-                                }
-
-                            }
-                            
-                        }
-                        
-                    }
-                }
-
-            }
-            else
-            {
-                CheckFilter();
-            }
-
-        }
-        */
+ 
         public static void CheckFilter()
         {
             var path = @"filter.txt";
@@ -1499,25 +1221,26 @@ namespace WFPrimeTool
 
 
 
-        private void listBox_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void listView_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (listBox.SelectedItem != null)
+            if (itemview.SelectedItem != null)
             {
 
 
-                if (listBox.SelectedItem.ToString().Split(' ').Length > 0)
+                if (itemview.SelectedItem.ToString().Split(' ').Length > 0)
                 {
-                    var s = listBox.SelectedItem.ToString().Split(' ');
+                    var s = itemview.SelectedItem.ToString().Split(' ');
+                    OrderData b = (OrderData)itemview.SelectedItem;
                     if (s.Last() != "")
                     {
-                        if (openorder.IsChecked == true && repeats != s[s.Length - 1])
+                        if (openorder.IsChecked == true && repeats != b.name)
                         {
-                            System.Diagnostics.Process.Start("https://warframe.market/items/" + s[s.Length - 1]);
-                            repeats = s[s.Length - 1];
+                            System.Diagnostics.Process.Start("https://warframe.market/items/" + b.name);
+                            repeats = b.name;
                         }
                         if (copyname.IsChecked == true)
                         {
-                            var name = s[s.Length - 1].Replace("_", " ");
+                            var name = b.name.Replace("_", " ");
                             Clipboard.SetText(name);
                         }
                         if (placeorder.IsChecked == true && Requests.JWT != "")
@@ -1527,14 +1250,14 @@ namespace WFPrimeTool
                             var active = orderWindow.Visibility;
                             if (active == Visibility.Hidden || active == Visibility.Collapsed)
                             {
-                                var name = s[s.Length - 1].Replace("_", " ");
+                                var name = b.name.Replace("_", " ");
                                 OrderWindow.itemname = name;
                                 string imgurl;
-                                if (ItemImgUrl.TryGetValue(s[s.Length - 1], out imgurl))
+                                if (ItemImgUrl.TryGetValue(b.name, out imgurl))
                                 {
-                                    OrderWindow.openorder = "https://warframe.market/items/" + s[s.Length - 1];
+                                    OrderWindow.openorder = "https://warframe.market/items/" + b.name;
                                     OrderWindow.itemimgurl = imgurl;
-                                    Orderitem = s[s.Length - 1];
+                                    Orderitem = b.name;
                                     orderWindow.Top = this.Top + 150;
                                     orderWindow.Left = this.Left + 350;
                                     orderWindow.Show();
@@ -1546,7 +1269,7 @@ namespace WFPrimeTool
                     {
                         if (copyname.IsChecked == true)
                         {
-                            var name = s[s.Length - 1].Replace("_", " ");
+                            var name = b.name.Replace("_", " ");
                             Clipboard.SetText(name);
                         }
                         if (placeorder.IsChecked == true && Requests.JWT != "")
@@ -1554,26 +1277,26 @@ namespace WFPrimeTool
                             var active = orderWindow.Visibility;
                             if (active == Visibility.Hidden)
                             {
-                                var name = s[s.Length - 1].Replace("_", " ");
+                                var name = b.name.Replace("_", " ");
                                 OrderWindow.itemname = name;
                                 string imgurl;
                                 int quantit;
-                                if (ItemImgUrl.TryGetValue(s[s.Length - 1], out imgurl))
+                                if (ItemImgUrl.TryGetValue(b.name, out imgurl))
                                 {
-                                    if (ownitemcount.TryGetValue(s[s.Length - 1], out quantit))
+                                    if (ownitemcount.TryGetValue(b.name, out quantit))
                                     {
                                         OrderWindow.quant = quantit;
-                                        OrderWindow.openorder = "https://warframe.market/items/" + s[s.Length - 1];
+                                        OrderWindow.openorder = "https://warframe.market/items/" + b.name;
                                         OrderWindow.itemimgurl = imgurl;
-                                        Orderitem = s[s.Length - 1];
+                                        Orderitem = b.name;
                                         orderWindow.Show();
                                     }
                                     else
                                     {
                                         OrderWindow.quant = 1;
-                                        OrderWindow.openorder = "https://warframe.market/items/" + s[s.Length - 1];
+                                        OrderWindow.openorder = "https://warframe.market/items/" + b.name;
                                         OrderWindow.itemimgurl = imgurl;
-                                        Orderitem = s[s.Length - 1];
+                                        Orderitem = b.name;
                                         orderWindow.Show();
                                     }
                                 }
@@ -1624,6 +1347,7 @@ namespace WFPrimeTool
                     logwin.Visibility = hidden;
                     savelog.Visibility = hidden;
                     Orders.Visibility = visible;
+                    placeorder.Visibility = visible;
                 }
                     if (Requests.responsebody.ToString().ToLower().Contains("error"))
                     {
@@ -1644,6 +1368,7 @@ namespace WFPrimeTool
                     }
                     ChangeStatus.Logout();
                     Orders.Visibility = hidden;
+                    placeorder.Visibility = hidden;
                     ingame_name = "";
                     SaveSettings(true);
                     flip = false;
@@ -1671,6 +1396,7 @@ namespace WFPrimeTool
                     logwin.Visibility = visible;
                     savelog.Visibility = visible;
                     Orders.Visibility = hidden;
+                    placeorder.Visibility = hidden;
                 }
             }
 
@@ -1713,6 +1439,7 @@ namespace WFPrimeTool
                 logwin.Visibility = hidden;
                 savelog.Visibility = hidden;
                 Orders.Visibility = visible;
+                placeorder.Visibility = visible;
                 Connect();
             }
             else
@@ -1727,13 +1454,17 @@ namespace WFPrimeTool
                 }
                 ChangeStatus.Logout();
                 Orders.Visibility = hidden;
+                placeorder.Visibility = hidden;
                 ingame_name = "";
                 SaveSettings(true);
                 flip = false;
                 button6.Content = "Login WFM";
                 Requests.JWT = "";
             }
-            key.Close();
+            if(key != null)
+            {
+                key.Close();
+            }
         }
         private void OpenOrder_Checked(object sender, RoutedEventArgs e)
         {
@@ -1750,10 +1481,11 @@ namespace WFPrimeTool
 
         }
 
-        private void Window_Closed(object sender, EventArgs e)
+        private async void Window_Closed(object sender, EventArgs e)
         {
-            ChangeStatus.SendMessage("{\"type\":\"@WS/USER/SET_STATUS\",\"payload\":\"invisible\"}");
+            await ChangeStatus.SendMessage("{\"type\":\"@WS/USER/SET_STATUS\",\"payload\":\"invisible\"}");
             SaveSettings(true);
+            await Task.Delay(500);
             Process.GetCurrentProcess().Kill();
         }
 
@@ -1852,5 +1584,7 @@ namespace WFPrimeTool
             }
 
         }
+
+
     }
 }
