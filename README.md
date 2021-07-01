@@ -24,6 +24,11 @@ Download the Tessdata zip from the releases section (has to be extracted and put
 
 
 # Keybinds
+!!IMPORTANT!!
+Make sure the Scan Setup window is focused when using the Keybinds
+Make sure no textboxes are selected by clicking the background of the window
+if the window is out of focus the keybinds dont work.
+
 Ctrl Sets the Start Position
 
 Left Arrow Key at Start Position and then Right Arrow Key at the second box topleft corner
