@@ -89,7 +89,7 @@ namespace WFPrimeTool
                     if (File.Exists(pathex))
                     {
                         string prevtext;
-                        using (FileStream fstr = File.OpenRead(path))
+                        using (FileStream fstr = File.OpenRead(pathex))
                         {
                             byte[] b = new byte[fstr.Length];
                             var fulltext = fstr.Read(b, 0, b.Length);
@@ -97,7 +97,7 @@ namespace WFPrimeTool
                             prevtext = temp.GetString(b);
                             fstr.Close();
                         }
-                        using (FileStream fstr = File.OpenWrite(path))
+                        using (FileStream fstr = File.OpenWrite(pathex))
                         {
                             AddText(fstr, prevtext + errorinfo + "\n");
                             fstr.Close();
@@ -106,7 +106,7 @@ namespace WFPrimeTool
                     }
                     else
                     {
-                        using (FileStream fstr = File.Create(path))
+                        using (FileStream fstr = File.Create(pathex))
                         {
                             AddText(fstr, errorinfo + "\n");
                             fstr.Close();
