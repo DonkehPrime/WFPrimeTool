@@ -71,6 +71,7 @@ namespace WFPrimeTool
             };
             marketSocket.OnMessage += (sender, e) =>
             {
+                /*
                 if (e.Data.Contains("@WS/chats/NEW_MESSAGE")) 
                 {
                     var message = JsonConvert.DeserializeObject<dynamic>(e.Data);
@@ -86,6 +87,7 @@ namespace WFPrimeTool
                     _notificationManager.Show(content);
 
                 }
+                */
             };
             marketSocket.OnMessage += (sender, e) =>
             {

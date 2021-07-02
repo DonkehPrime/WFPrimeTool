@@ -1,0 +1,7 @@
+Logging=True
+HideScreen=False
+RetryScan=False
+RetryLimit=20
+IngameName=
+status=
+laststatus=False

@@ -1,0 +1,47 @@
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\WF Prime Tool.exe.config
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\WF Prime Tool.exe
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\WF Prime Tool.pdb
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\FontAwesome5.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\FontAwesome5.Net.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\ImageProcessor.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\Newtonsoft.Json.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\Notification.Wpf.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\System.ValueTuple.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\Tesseract.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\websocket-sharp.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\FontAwesome5.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\FontAwesome5.Net.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\ImageProcessor.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\Newtonsoft.Json.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\System.ValueTuple.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Debug\websocket-sharp.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\WFPrimeTool.csprojAssemblyReference.cache
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\MainWindow.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\ChangeStatus.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\MainWindow.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\MarketHandler.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\MarketMessenger.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\OrderWindow.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\Scan Setup.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\SetFilterName.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\SettingsWindow.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\App.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\WF Prime Tool_MarkupCompile.cache
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\WF Prime Tool_MarkupCompile.lref
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\ChangeStatus.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\MarketHandler.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\MarketMessenger.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\OrderWindow.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\Scan Setup.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\SetFilterName.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\SettingsWindow.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\WF Prime Tool.g.resources
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\WFPrimeTool.Properties.Resources.resources
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\WFPrimeTool.csproj.GenerateResource.cache
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\WFPrimeTool.csproj.CoreCompileInputs.cache
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\WFPrimeTool.csproj.CopyComplete
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\WF Prime Tool.exe
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Debug\WF Prime Tool.pdb

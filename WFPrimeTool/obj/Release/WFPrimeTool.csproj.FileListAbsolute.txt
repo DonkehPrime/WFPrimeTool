@@ -1,0 +1,49 @@
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\x86\leptonica-1.80.0.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\x86\tesseract41.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\x64\leptonica-1.80.0.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\x64\tesseract41.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\WF Prime Tool.exe.config
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\WF Prime Tool.exe
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\WF Prime Tool.pdb
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\FontAwesome5.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\FontAwesome5.Net.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\ImageProcessor.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\Microsoft.Xaml.Behaviors.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\Newtonsoft.Json.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\Notification.Wpf.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\System.ValueTuple.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\Tesseract.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\websocket-sharp.dll
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\FontAwesome5.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\FontAwesome5.Net.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\ImageProcessor.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\Microsoft.Xaml.Behaviors.pdb
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\Microsoft.Xaml.Behaviors.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\Newtonsoft.Json.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\System.ValueTuple.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\bin\Release\websocket-sharp.xml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\WFPrimeTool.csprojAssemblyReference.cache
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\MainWindow.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\ChangeStatus.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\MainWindow.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\MarketHandler.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\OrderWindow.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\Scan Setup.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\SetFilterName.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\SettingsWindow.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\App.g.cs
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\WF Prime Tool_MarkupCompile.cache
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\WF Prime Tool_MarkupCompile.lref
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\ChangeStatus.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\MarketHandler.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\OrderWindow.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\Scan Setup.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\SetFilterName.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\SettingsWindow.baml
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\WF Prime Tool.g.resources
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\WFPrimeTool.Properties.Resources.resources
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\WFPrimeTool.csproj.GenerateResource.cache
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\WFPrimeTool.csproj.CoreCompileInputs.cache
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\WFPrimeTool.csproj.CopyComplete
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\WF Prime Tool.exe
+C:\Users\basbi\source\repos\WFPrimeTool2\WFPrimeTool\obj\Release\WF Prime Tool.pdb

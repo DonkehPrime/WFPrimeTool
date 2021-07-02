@@ -1,0 +1,7 @@
+{"prime":["fime","frime","_prim_","pimey","primdl","primed","primev","pnimey","biime","prirfie","prine","primé","prinfe","ptime","primd","primef","primey","prinid","primid","primi"]
+"neuroptics":["nelroptics","Nettoptics"]
+"chassis":[]
+"systems":["stems","sytems"]
+"receiver":["recelver"]
+"barrel":[]
+"ornament":["rnament","rhament"]}

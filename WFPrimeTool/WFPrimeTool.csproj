@@ -138,9 +138,6 @@
     <Compile Include="MarketHandler.xaml.cs">
       <DependentUpon>MarketHandler.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MarketMessenger.xaml.cs">
-      <DependentUpon>MarketMessenger.xaml</DependentUpon>
-    </Compile>
     <Compile Include="OCRHandler.cs" />
     <Compile Include="OrderWindow.xaml.cs">
       <DependentUpon>OrderWindow.xaml</DependentUpon>
@@ -171,10 +168,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MarketHandler.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MarketMessenger.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
