@@ -651,7 +651,7 @@ namespace WFPrimeTool
             string Check = i;
             try
             {
-                oData = JsonConvert.DeserializeObject<dynamic>(client.DownloadString("https://api.warframe.market/v1/items/" + Check + "/orders"));
+                oData = JsonConvert.DeserializeObject<dynamic>(client.DownloadString("https://api.warframe.market/v1/items/" + Check + "/orders?include=item"));
 
                 int orderc = oData["payload"]["orders"].Count;
                 foreach (var itemf in oData["payload"]["orders"])
@@ -668,8 +668,8 @@ namespace WFPrimeTool
                 }
                 var sortdict = iPrice.OrderBy(e => e.Value);
                 try {
-                    await Task.Delay(340);
-                    duData = JsonConvert.DeserializeObject<dynamic>(client.DownloadString("https://api.warframe.market/v1/items/" + Check));
+                   
+
                     if (sortdict != null)
                     {
 
@@ -677,7 +677,7 @@ namespace WFPrimeTool
                         if (!listBox.Items.Contains(Check + " Plat: " + sortdict.First().Value + " Ducat: "))
                         {
                             
-                            var ducatlink = duData["payload"]["item"]["items_in_set"];
+                            var ducatlink = oData["include"]["item"]["items_in_set"];
                             int ducatprice = 0;
                             for (int vd = 0; vd < ducatlink.Count; vd++)
                             {
@@ -709,7 +709,7 @@ namespace WFPrimeTool
                     if (!listBox.Items.Contains(Check + " Plat: " + 0 + " Ducat: "))
                     {
                         //duData = JsonConvert.DeserializeObject<dynamic>(client.DownloadString("https://api.warframe.market/v1/items/" + Check));
-                        var ducatlink = duData["payload"]["item"]["items_in_set"];
+                        var ducatlink = oData["include"]["item"]["items_in_set"];
                         int ducatprice = 0;
                         for (int vd = 0; vd < ducatlink.Count; vd++)
                         {
@@ -748,7 +748,7 @@ namespace WFPrimeTool
 
                         
                         //duData = JsonConvert.DeserializeObject<dynamic>(client.DownloadString("https://api.warframe.market/v1/items/" + Check));
-                        var ducatlink = duData["payload"]["item"]["items_in_set"];
+                        var ducatlink = oData["include"]["item"]["items_in_set"];
                         int ducatprice = 0;
                         for (int vd = 0; vd < ducatlink.Count; vd++)
                         {
@@ -1002,7 +1002,7 @@ namespace WFPrimeTool
             textBox.Text = "";
             
                 d.Tick += new EventHandler(Timertick);
-                d.Interval = TimeSpan.FromMilliseconds(680);
+                d.Interval = TimeSpan.FromMilliseconds(340);
                 d.Start();
             
             

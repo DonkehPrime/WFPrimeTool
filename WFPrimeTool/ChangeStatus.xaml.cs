@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using WFPrimeTool.OrderFunctions;
 using System.Threading;
 using System.Diagnostics;
+using Notification.Wpf;
 
 namespace WFPrimeTool
 {
@@ -72,8 +73,18 @@ namespace WFPrimeTool
             {
                 if (e.Data.Contains("@WS/chats/NEW_MESSAGE")) 
                 {
-                    //SendMessage("{\"type\":\"@WS/chats/NEW_MESSAGE\",\"payload\":\"invisible\"}");
-                    
+                    var message = JsonConvert.DeserializeObject<dynamic>(e.Data);
+                    var _notificationManager = new NotificationManager();
+                    var content = new NotificationContent
+                    {
+                        Title = "Warframe Market Message Received.",
+                        Message = message["payload"]["message"],
+                        Type = NotificationType.Notification,
+                        TrimType = NotificationTextTrimType.Attach, // will show attach button on message
+                        CloseOnClick = true // Set true if u want close message when left mouse button click on message (base = true)
+                    };
+                    _notificationManager.Show(content);
+
                 }
             };
             marketSocket.OnMessage += (sender, e) =>
